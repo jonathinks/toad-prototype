@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TOAD</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <script type="text/javascript">
+      // GLOBAL VARIABLES
+	  let this_year = 2021
+      let birth_year = 1990
+	  let generation_gap = 30
+	  let generations = [1930, 1960, 1990, 2020, 2050, 2080]
+	  let generation_names = ["grand parents", "parents", "you", "your children", "your grand children", "your great grand children"]
+      let place = { x: 0, y: 0 }
+    </script>
+    <section class="cover">
+      <img src="image/cover.jpeg" />
+      <h1>Explorable</h1>
+    </section>
+    <section class="story">
+      <h2>Title of section</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </section>
+    <section class="interactive">
+      <label for="year_born">What year were you born?</label>
+      <input
+        name="year_born"
+        type="number"
+        min="1900"
+        max="2099"
+        step="1"
+        value="1990"
+        onchange="changeYear(this.value)"
+        />
+      <script type="text/javascript">
+        function changeYear(value) {
+			birth_year = value
+			generations.grandparents = birth_year - generation_gap * 2
+			generations.parents = birth_year - generation_gap
+			generations.children = birth_year + generation_gap
+			generations.grandchildren = birth_year + generation_gap * 2
+			generations.greatgrandchildren = birth_year + generation_gap * 3
+		}
+		function getRangeFromYear (input_year) {
+			if(input_year <= 1990)
+				return 1961
+			else if(input_year <= 2020)
+				return 1991
+			else if(input_year <= 2068)
+				return 2021
+			else
+				return 2069
+		}	
+      </script>
+    </section>
+    <section class="interactive">
+      <label for="location">Where in Gävleborg are you close to?</label>
+      <div id="place_picker" class="map">
+        <img src="image/map.png" />
+        <div class="pin">📍</div>
+        <script type="text/javascript">
+          window.addEventListener('load', function() {
+            let mapContainer = document.querySelector('#place_picker.map')
+            mapContainer.addEventListener('click', function(e) {
+              let pins = document.querySelectorAll('.pin')
+              let mapBound = mapContainer.getBoundingClientRect()
+              // Normalised position on map
+              place.x = e.layerX / mapBound.width
+              place.y = e.layerY / mapBound.height
+              // Render position for pin
+              for (let i = 0; i < pins.length; i++) {
+                let pin = pins.item(i)
+                let pinBound = pin.getBoundingClientRect()
+                let x = ((e.layerX - (pinBound.width*0.5)) / mapBound.width) * 100
+                let y = ((e.layerY - pinBound.height*0.8) / mapBound.height) * 100
+                pin.style.top = `${y}%`
+                pin.style.left = `${x}%`
+              }
+            })
+          })
+        </script>
+      </div>
+    </section>
+	
+    <section class="interactive">
+	  <label for="section_rain">How did or would _____ experience extreme rain?</label>
+	  <p id="debug_year"></p>
+      <div class="buttons_rain">
+        <button onclick="changeRainMap(0)">Your grandparents</button>
+        <button onclick="changeRainMap(1)">Your parents</button>
+		<button onclick="changeRainMap(2)">you</button>
+        <button onclick="changeRainMap(3)">Your children</button>
+        <button onclick="changeRainMap(4)">Your grand children</button>
+        <button onclick="changeRainMap(5)">Your great grand children</button>
+        <script type="text/javascript">
+          function changeRainMap(index) {
+			// Debug
+			document.getElementById("debug_year").innerHTML = generations[index];
+            // Get the year of data range that should be displayed
+			display_year = getRangeFromYear(generations[index])
+			let gen_name = generation_names[index];
+			
+			let mapImage = document.querySelector('#forecast_rain.map img')
+            mapImage.src = `image/${'rain'+display_year}.png`
+          }
+		  
+        </script>
+      </div>
+    </section>
+	
+	<section class="interactive">
+      <div id="forecast_rain" class="map">
+        <img src="image/rain1961.png" />
+        <div class="pin">📍</div>
+      </div>
+    </section>
+	
+	<section class="interactive">
+	  <label for="section_rain">How did or would ____ experience heat waves?</label>
+      <div class="buttons_heatwave">
+        <button onclick="changeHeatwaveMap(0)">Your grandparents</button>
+        <button onclick="changeHeatwaveMap(1)">Your parents</button>
+		<button onclick="changeHeatwaveMap(2)">you</button>
+        <button onclick="changeHeatwaveMap(3)">Your children</button>
+        <button onclick="changeHeatwaveMap(4)">Your grand children</button>
+        <button onclick="changeHeatwaveMap(5)">Your great grand children</button>
+        <script type="text/javascript">
+          function changeHeatwaveMap(index) {
+            // Get the year of data range that should be displayed
+			display_year = getRangeFromYear(generations[index])
+			let mapImage = document.querySelector('#forecast_heatwave.map img')
+            mapImage.src = `image/${'heatwave'+display_year}.png`
+          }
+		  
+        </script>
+      </div>
+    </section>
+	
+	<section class="interactive">
+      <div id="forecast_heatwave" class="map">
+        <img src="image/heatwave1961.png" />
+        <div class="pin">📍</div>
+      </div>
+    </section>
+	
+    <!--<section class="interactive">
+      <h3>How other people experience Gävleborg?</h3>
+      <form>
+        <label>
+          <input type="radio" name="generation" value="grandparents" onchange="changeForecast(this.value)">
+          Your Grandparents
+        </label>
+        <label>
+          <input type="radio" name="generation" value="parents" onchange="changeForecast(this.value)">
+          Your Parents
+        </label>
+        <label>
+          <input type="radio" name="generation" value="you" onchange="changeForecast(this.value)" checked>
+          You
+        </label>
+        <label>
+          <input type="radio" name="generation" value="children" onchange="changeForecast(this.value)">
+          Your children
+        </label>
+        <label>
+          <input type="radio" name="generation" value="grandchildren" onchange="changeForecast(this.value)">
+          Your Grand Children
+        </label>
+        <label>
+          <input type="radio" name="generation" value="grandgrandchildren" onchange="changeForecast(this.value)">
+          Your Grand Grand Children
+        </label>
+      </form>
+      <script type="text/javascript">
+        function changeForecast(generation) {
+          const forecastMap = document.querySelector('#forecast.map img')
+          forecastMap.src = `image/${generation}.png`
+        }
+      </script>
+    </section>
+    <section class="interactive">
+      <div id="forecast" class="map">
+        <img src="image/you.png" />
+        <div class="pin">📍</div>
+      </div>
+    </section>-->
+  </body>
+</html>

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+* {
+  box-sizing: border-box;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+}
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  padding-bottom: 10em;
+}
+img {
+  max-width: 100%;
+}
+input,
+label {
+  display: inline-block;
+  margin-bottom: 1em;
+}
+label {
+  width: 100%;
+}
+button {
+  padding: 0.5em 1em;
+  background: #ccc;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 0.25em;
+}
+section {
+  padding: 1em 0;
+}
+section.cover {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section.cover h1 {
+  z-index: 10;
+  font-size: 10em;
+  color: white;
+}
+section.cover img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  z-index: 0;
+}
+section.story,
+section.interactive {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.map {
+  width: 60%;
+  margin: 0 auto;
+}
+.map .pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 14px;
+  line-height: 14px;
+}
+.map > * {
+  pointer-events: none;
+}
+
+.buttons {
+  text-align: center;
+}

@@ -12,7 +12,7 @@
       let birth_year = 1990
 	  let generation_gap = 30
 	  let generations = [1930, 1960, 1990, 2020, 2050, 2080]
-	  let generation_names = ["grand parents", "parents", "you", "your children", "your grand children", "your great grand children"]
+	  let generation_names = ["your grand parents", "your parents", "you", "your children", "your grand children", "your great grand children"]
       let place = { x: 0, y: 0 }
     </script>
     <section class="cover">
@@ -86,8 +86,9 @@
     </section>
 	
     <section class="interactive">
+	  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	  <label for="section_rain">How did or would _____ experience extreme rain?</label>
-	  <p id="debug_year"></p>
+	  <p>In the year <div id="test_year"></div>, <div id="test_gen"></div> will roughly be the same age as you are today.</p>
       <div class="buttons_rain">
         <button onclick="changeRainMap(0)">Your grandparents</button>
         <button onclick="changeRainMap(1)">Your parents</button>
@@ -98,7 +99,8 @@
         <script type="text/javascript">
           function changeRainMap(index) {
 			// Debug
-			document.getElementById("debug_year").innerHTML = generations[index];
+			document.getElementById("test_year").innerHTML = generations[index];
+			document.getElementById("test_gen").innerHTML = generation_names[index];
             // Get the year of data range that should be displayed
 			display_year = getRangeFromYear(generations[index])
 			let gen_name = generation_names[index];
@@ -119,8 +121,9 @@
     </section>
 	
 	<section class="interactive">
-	  <label for="section_rain">How did or would ____ experience heat waves?</label>
-      <div class="buttons_heatwave">
+	  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <label for="section_heatwave">How did or would ____ experience heat waves?</label>
+	  <div class="buttons_heatwave">
         <button onclick="changeHeatwaveMap(0)">Your grandparents</button>
         <button onclick="changeHeatwaveMap(1)">Your parents</button>
 		<button onclick="changeHeatwaveMap(2)">you</button>

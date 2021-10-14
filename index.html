@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>TOAD</title>
     <link rel="stylesheet" href="style.css">
+	<script src="package/dist/d3.min.js"></script>
   </head>
   <body>
     <script type="text/javascript">
@@ -16,16 +17,19 @@
       let place = { x: 0, y: 0 }
     </script>
     <section class="cover">
-      <img src="image/cover.jpeg" />
-      <h1>Explorable</h1>
+      <img src="image/cover2.jpg" />
+	  <h1>Våra barnbarns Gävleborg?</h1>
+	  <h2>An explorable explanation</h2>
     </section>
     <section class="story">
-      <h2>Title of section</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <h2>Från snökaos till översvämning. Vad kommer sen?</h2>
+      <p>Jag kommer aldrig glömma snökaoset vintern 1998. Snön täckte den nedre halvan av fönstret i köket och dörren gick inte att öppna. När man väl kom ut var det helt tyst. Inte en enda bil var igång.</p>
+      <p>Den upplevelsen känns nu relativt oskydlig när man jämför med de översvämningarna vi fick uppleva i somras. Många fick sina boenden och bilar skadade. Vägar och annan infrastruktur behövde repareras. Försäkningsbolagen fick rekordmånga anmälningar. Gävle Vatten har uppskattat att skadorna kommer kosta en kvarts miljard kronor.</p>
+	  <p>Enligt SHMIs beräkningar kommer klimatet i Gävleborgs län förändras under detta århundrande. Hur mycket det kommer förändras beror på mängden koldixoid som vi människor släpper ut i atmosfären.</p>
+	  <p>Hur kommer Gävleborgs klimat skilja mellan generationerna i din familj?</p>
     </section>
     <section class="interactive">
-      <label for="year_born">What year were you born?</label>
+      <label for="year_born">Vilket år är du född??</label>
       <input
         name="year_born"
         type="number"
@@ -57,7 +61,7 @@
       </script>
     </section>
     <section class="interactive">
-      <label for="location">Where in Gävleborg are you close to?</label>
+      <label for="location">Vart i Gävleborg bor du, eller dina nära och kära? <i>Klicka på kartan för att markera platsen.</i></label>
       <div id="place_picker" class="map">
         <img src="image/map.png" />
         <div class="pin">📍</div>
@@ -86,13 +90,14 @@
     </section>
 	
     <section class="interactive">
-	  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	  <label for="section_rain">How did or would _____ experience extreme rain?</label>
+	  <h2>Extrem nederbörd</h2>
+	  <p>Om vi som vårt globala samhälle fortsätter att använda fossila bränsle kommer vi troligtvis se mer extremregn som vi upplevlde sommaren 2021. Nedan kan du se högsta årsnederbörden (24 timmar) i en värld som fortsätter använda fossila bränslen. Kom dock ihåg att Gävle fick 166mm regn under 24 timmar i somras, så se detta mer som ett index och jämförelse.</p>
+	  <label for="section_rain">Extremregn per generation.</label>
 	  <p>In the year <div id="test_year"></div>, <div id="test_gen"></div> will roughly be the same age as you are today.</p>
       <div class="buttons_rain">
         <button onclick="changeRainMap(0)">Your grandparents</button>
         <button onclick="changeRainMap(1)">Your parents</button>
-		<button onclick="changeRainMap(2)">you</button>
+		<button onclick="changeRainMap(2)">You</button>
         <button onclick="changeRainMap(3)">Your children</button>
         <button onclick="changeRainMap(4)">Your grand children</button>
         <button onclick="changeRainMap(5)">Your great grand children</button>
@@ -108,7 +113,6 @@
 			let mapImage = document.querySelector('#forecast_rain.map img')
             mapImage.src = `image/${'rain'+display_year}.png`
           }
-		  
         </script>
       </div>
     </section>
@@ -126,7 +130,7 @@
 	  <div class="buttons_heatwave">
         <button onclick="changeHeatwaveMap(0)">Your grandparents</button>
         <button onclick="changeHeatwaveMap(1)">Your parents</button>
-		<button onclick="changeHeatwaveMap(2)">you</button>
+		<button onclick="changeHeatwaveMap(2)">You</button>
         <button onclick="changeHeatwaveMap(3)">Your children</button>
         <button onclick="changeHeatwaveMap(4)">Your grand children</button>
         <button onclick="changeHeatwaveMap(5)">Your great grand children</button>
@@ -148,6 +152,35 @@
         <div class="pin">📍</div>
       </div>
     </section>
+	
+	<section class="interactive">
+	  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <label for="section_snowdays">How did or would ____ experience heat waves?</label>
+	  <div class="buttons_snowdays">
+        <button onclick="changeSnowdaysMap(0)">Your grandparents</button>
+        <button onclick="changeSnowdaysMap(1)">Your parents</button>
+		<button onclick="changeSnowdaysMap(2)">You</button>
+        <button onclick="changeSnowdaysMap(3)">Your children</button>
+        <button onclick="changeSnowdaysMap(4)">Your grand children</button>
+        <button onclick="changeSnowdaysMap(5)">Your great grand children</button>
+        <script type="text/javascript">
+          function changeSnowdaysMap(index) {
+            // Get the year of data range that should be displayed
+			display_year = getRangeFromYear(generations[index])
+			let mapImage = document.querySelector('#forecast_snowdays.map img')
+            mapImage.src = `image/${'snow'+display_year}.png`
+          }
+        </script>
+      </div>
+    </section>
+	
+	<section class="interactive">
+      <div id="forecast_snowdays" class="map">
+        <img src="image/snow1961.png" />
+        <div class="pin">📍</div>
+      </div>
+    </section>
+
 	
     <!--<section class="interactive">
       <h3>How other people experience Gävleborg?</h3>
